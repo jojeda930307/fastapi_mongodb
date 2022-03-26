@@ -6,7 +6,7 @@ import src.config.database as db
 product = APIRouter()
 
 
-@product.get('/getProducts')
+@product.get('/getProducts', tags=['Products'])
 async def list_products():
     """ Devuelve todos los productos """
 

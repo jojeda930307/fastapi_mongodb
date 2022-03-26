@@ -10,3 +10,10 @@ class Product(MongoModel):
     image: Optional[List[str]]
     description: str
     price: float
+
+
+class ProductOut(MongoModel):
+    image: Optional[List[str]]
+    description: str
+    price: float
+

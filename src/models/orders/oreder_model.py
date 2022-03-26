@@ -17,7 +17,6 @@ class Order(MongoModel):
 
 
 class OrderOut(MongoModel):
-    id: Optional[OID] = Field(alias='_id')
     order_id: Optional[str] = 'ID_' + str(uuid4()).replace('-', '')
     product: Product
     quantity: int

@@ -13,3 +13,12 @@ class UserAddress(MongoModel):
     flat: int = Field()
     door: str = Field()
     postal_code: int = Field()
+
+
+class UserAddressOut(MongoModel):
+    city: str = Field()
+    location: str = Field()
+    street: str = Field()
+    flat: int = Field()
+    door: str = Field()
+    postal_code: int = Field()

@@ -6,7 +6,7 @@ import src.config.database as db
 user = APIRouter()
 
 
-@user.get('/getUsers', response_model=list[UserOut])
+@user.get('/getUsers', response_model=list[UserOut], tags=['Users'])
 async def list_users():
     """ Devuelve todos los usuarios """
 
@@ -16,14 +16,14 @@ async def list_users():
         if not addr_id:
             users.append(UserOut(**user))
             return users
-        for item in db.mydb.addressUsers.find():
-            if addr_id == item.get('_id'):
-                user['address'] = item
+        for address in db.mydb.addressUsers.find():
+            if addr_id == address.get('_id'):
+                user['address'] = address
                 users.append(UserOut(**user))
     return users
 
 
-@user.get("/user/{user_id}")
+@user.get("/user/{user_id}", response_model=UserOut,  tags=['Users'])
 def get_user_by_id(user_id: str):
     """ Devuelve un usuario por su ID """
 
@@ -32,13 +32,13 @@ def get_user_by_id(user_id: str):
             address_id = user.get('address')
             if not address_id:
                 return UserOut(**user)
-            for item in db.mydb.addressUsers.find():
-                if address_id == item.get('_id'):
-                    user['address'] = item
+            for address in db.mydb.addressUsers.find():
+                if address_id == address.get('_id'):
+                    user['address'] = address
                     return UserOut(**user)
 
 
-@user.post('/user', response_model=UserOut)
+@user.post('/user', tags=['Users'])
 async def create_user(user: UserIn):
     """ Inserta un nuevo usuario en la base de datos """
 
@@ -49,7 +49,7 @@ async def create_user(user: UserIn):
     return UserOut(**created_user)
 
 
-@user.put('/user/{user_id}')
+@user.put('/user/{user_id}', tags=['Users'])
 async def update_user(user_id: str, update_user: UserIn):
     """ Actualiza los datos de un usuario """
 
@@ -64,7 +64,7 @@ async def update_user(user_id: str, update_user: UserIn):
     return UserOut(**updated_user)
 
 
-@user.delete('/user/{user_id}')
+@user.delete('/user/{user_id}', tags=['Users'])
 async def delete_user(user_id: str):
     """ Elimina los datos de un usuario """
 

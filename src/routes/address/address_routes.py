@@ -6,7 +6,7 @@ import src.config.database as db
 address = APIRouter()
 
 
-@address.get('/getAddress', response_model=list[UserAddress])
+@address.get('/getAddress', response_model=list[UserAddress], tags=['Address'])
 async def list_address():
     """ Devuelve todas las direcciones """
 
@@ -16,7 +16,7 @@ async def list_address():
     return l_address
 
 
-@address.post('/address/{user_id}', response_model=UserAddress)
+@address.post('/address/{user_id}', response_model=UserAddress, tags=['Address'])
 async def create_address(user_id: str, address: UserAddress):
     """ Inserta una dirección de usuario en la base de datos """
 

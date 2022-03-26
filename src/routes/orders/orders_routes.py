@@ -8,7 +8,7 @@ from src.temp.aggregations import usr_addrs, unwind_user_address, remove_addr_id
 order = APIRouter()
 
 
-@order.get('/getOrders', response_model=list[OrderOut])
+@order.get('/getOrders', response_model=list[OrderOut], tags=['Orders'])
 async def list_orders():
     """ Devuelve todos los pedidos """
 
@@ -18,7 +18,7 @@ async def list_orders():
     return {'orders': orders}
 
 
-@order.get("/order/{order_id}")
+@order.get("/order/{order_id}",  tags=['Orders'])
 def get_order_by_id(order_id: str, user_id: str):
     """ Devuelve un pedido por su ID """
 
