@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.models.model import UserOut, UserIn, UserAddress
+from src.models.address.address_model import UserAddress
 import src.config.database as db
 
 address = APIRouter()

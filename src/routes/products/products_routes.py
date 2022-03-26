@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from src.models.model import Product
+from src.models.products.product_model import Product
 import src.config.database as db
 
 product = APIRouter()
