@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from src.models.model import UserOut, UserIn
-import src.database as db
+import src.config.database as db
 
 user = APIRouter()
 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from src.models.model import Order, OrderOut
-import src.database as db
+import src.config.database as db
 from src.temp.aggregations import usr_addrs, unwind_user_address, remove_addr_id, order_prod, unwind_order_prod, \
     remove_prod_id
 

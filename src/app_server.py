@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.routes.users.user_routes import user
+from src.routes.users.users_routes import user
 from src.routes.address.address_routes import address
 from src.routes.orders.orders_routes import order
 from src.routes.products.products_routes import product
