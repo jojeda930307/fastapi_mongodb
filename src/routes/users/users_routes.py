@@ -12,7 +12,14 @@ async def list_users():
 
     users = []
     for user in db.mydb.users.find():
-        users.append(UserOut(**user))
+        addr_id = user.get('address')
+        if not addr_id:
+            users.append(UserOut(**user))
+            return users
+        for item in db.mydb.addressUsers.find():
+            if addr_id == item.get('_id'):
+                user['address'] = item
+                users.append(UserOut(**user))
     return users
 
 
@@ -22,7 +29,13 @@ def get_user_by_id(user_id: str):
 
     for user in db.mydb.users.find():
         if str(user.get('_id')) == user_id:
-            return UserOut(**user)
+            address_id = user.get('address')
+            if not address_id:
+                return UserOut(**user)
+            for item in db.mydb.addressUsers.find():
+                if address_id == item.get('_id'):
+                    user['address'] = item
+                    return UserOut(**user)
 
 
 @user.post('/user', response_model=UserOut)

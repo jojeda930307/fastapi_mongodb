@@ -52,7 +52,7 @@ class UserOut(MongoModel):
     id: OID = Field(alias='_id')
     name: str
     email: str
-    address: Optional[OID]
+    address: Optional[UserAddress]
 
 
 class UserInDB(MongoModel):
@@ -73,6 +73,7 @@ class Order(MongoModel):
     product: OID
     quantity: int
     user: Optional[OID]
+
 
 class OrderOut(MongoModel):
     id: Optional[OID] = Field(alias='_id')
